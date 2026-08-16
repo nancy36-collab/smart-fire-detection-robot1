@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>fire_robot_core</name>
+  <version>1.0.0</version>
+  <description>Smart Fire Detection and Localization System using ROS1 Noetic</description>
+
+  <maintainer email="student@todo.todo">Mechatronics Engineer</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>visualization_msgs</depend>
+  <depend>tf</depend>
+
+  <exec_depend>python3-opencv</exec_depend>
+  <exec_depend>python3-numpy</exec_depend>
+
+  <export>
+  </export>
+</package>

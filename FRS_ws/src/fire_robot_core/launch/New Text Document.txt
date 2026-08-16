@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Arguments -->
+    <arg name="video_source" default="http://192.168.43.178:8080/video" />
+    <arg name="serial_port" default="/dev/ttyUSB0" />
+
+    <!-- 1. Load Robot Model & Description (URDF/Xacro) from fire_robot_description -->
+    <include file="$(find fire_robot_description)/launch/launchR.launch" />
+
+    <!-- 2. Integrated Exact OpenCV Fire Detector Node (fire_dhsv.py) -->
+    <node name="fire_detection_publisher" pkg="fire_robot_core" type="fire_detection_publisher.py" output="screen">
+        <param name="video_source" value="$(arg video_source)" />
+        <param name="focal_length_px" value="600.0" />
+        <param name="real_fire_height_m" value="0.20" />
+    </node>
+
+    <!-- 3. RVIZ Simulation Controller Node -->
+    <node name="rviz_simulation_controller" pkg="fire_robot_core" type="rviz_simulation_controller.py" output="screen" />
+
+    <!-- 4. Real Robot Serial Bridge Node -->
+    <node name="real_robot_bridge" pkg="fire_robot_core" type="real_robot_bridge.py" output="screen">
+        <param name="serial_port" value="$(arg serial_port)" />
+        <param name="baud_rate" value="9600" />
+    </node>
+
+    <!-- 5. RVIZ with Loaded Config -->
+    <node name="rviz_configured" pkg="rviz" type="rviz" args="-d $(find fire_robot_core)/config/fire_robot.rviz" output="screen" />
+</launch>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+
+  
+  
+  <arg name="model"/>
+	<param name="robot_description"
+	textfile = "$(find fire_robot_description)/urdf/robot.urdf"/>
+  
+    <node name="robot_state_publisher"
+          pkg="robot_state_publisher"
+          type="robot_state_publisher" />
+          
+    <node name="joint_state_publisher_gui"
+          pkg="joint_state_publisher_gui"
+          type="joint_state_publisher_gui" />
+  
+  
+  
+
+  <node 
+    pkg="rviz" 
+    type="rviz" 
+    name="rviz" 
+    args="-d $(find fire_robot_description)/rviz/rvizR.rviz" 
+    required="true" />
+    
+    
+</launch>
